@@ -47,8 +47,8 @@ Installation
 * Run these commands first:
 
   ```bash
-  curl -s https://raw.githubusercontent.com/Ardakilic/backmeup/master/backmeup.sh -o backmeup.sh
-  curl -s https://raw.githubusercontent.com/Ardakilic/backmeup/master/.backmeuprc -o ~/.backmeuprc
+  curl -s https://raw.githubusercontent.com/NoorAdiana/backmeup/master/backmeup.sh -o backmeup.sh
+  curl -s https://raw.githubusercontent.com/NoorAdiana/backmeup/master/.backmeuprc -o ~/.backmeuprc
   chmod 600 ~/.backmeuprc
   ```
 * Now, edit the configuration values as stated [here](#configuration-values).
