@@ -232,7 +232,7 @@ then
     if [[ "$COMPRESSION" == "tar" ]];
     then
         FILENAME="$PREFIX_FILENAME-$THEDATE.tar.gz"
-        tar -zcf "$FILENAME" -C "$FILESROOT" . -C "$SQLFOLDERFULL/" > /dev/null
+        tar -zcf "$BASEFOLDER/$FILENAME" -C "$FILESROOT" . -C "$SQLFOLDERFULL/" > /dev/null
     elif [[ "$COMPRESSION" == "7zip" ]];
     then
         FILENAME="$PREFIX_FILENAME-$THEDATE.7z"
