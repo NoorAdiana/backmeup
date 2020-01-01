@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #Add paths for the script to work better on cron
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:~/.local/bin
 
 echo '-------------------------------------------------'
 echo "  ____             _    __  __      _    _       "
@@ -30,7 +30,7 @@ echo ''
 # If no configuration file is found, let's download and create one.
 if [[ ! -f "$HOME/.backmeuprc" ]];
 then
-    curl -s https://raw.githubusercontent.com/Ardakilic/backmeup/master/.backmeuprc -o $HOME/.backmeuprc
+    curl -s https://raw.githubusercontent.com/NoorAdiana/backmeup/master/.backmeuprc -o $HOME/.backmeuprc
     chmod 400 $HOME/.backmeuprc # This file must have least permissions as possible.
 fi
 
@@ -50,6 +50,10 @@ do
 key="$1"
 
 case $key in
+    -n|--name)
+    PREFIX_FILENAME="$2"
+    shift # past argument
+    ;;
     -tz|--timezone)
     TIMEZONE="$2"
     shift # past argument
@@ -227,11 +231,11 @@ then
 
     if [[ "$COMPRESSION" == "tar" ]];
     then
-        FILENAME="backmeup-$THEDATE.tar.gz"
-        tar -zcf "$BASEFOLDER/$FILENAME" -C "$FILESROOT" . -C "$SQLFOLDERFULL/" > /dev/null
+        FILENAME="$PREFIX_FILENAME_$THEDATE.tar.gz"
+        tar -zcf "$FILENAME" -C "$FILESROOT" . -C "$SQLFOLDERFULL/" > /dev/null
     elif [[ "$COMPRESSION" == "7zip" ]];
     then
-        FILENAME="backmeup-$THEDATE.7z"
+        FILENAME="$PREFIX_FILENAME_$THEDATE.7z"
         if [[ "$SEVENZIP_COMPRESSION_PASSWORD" != "" ]];
         then
             # https://askubuntu.com/a/928301/107722
