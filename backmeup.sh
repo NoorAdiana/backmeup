@@ -231,11 +231,11 @@ then
 
     if [[ "$COMPRESSION" == "tar" ]];
     then
-        FILENAME="$PREFIX_FILENAME_$THEDATE.tar.gz"
+        FILENAME="$PREFIX_FILENAME-$THEDATE.tar.gz"
         tar -zcf "$FILENAME" -C "$FILESROOT" . -C "$SQLFOLDERFULL/" > /dev/null
     elif [[ "$COMPRESSION" == "7zip" ]];
     then
-        FILENAME="$PREFIX_FILENAME_$THEDATE.7z"
+        FILENAME="$PREFIX_FILENAME-$THEDATE.7z"
         if [[ "$SEVENZIP_COMPRESSION_PASSWORD" != "" ]];
         then
             # https://askubuntu.com/a/928301/107722
